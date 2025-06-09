@@ -4,7 +4,7 @@
 
 // Base URL for API calls - adjust based on environment
 // Use the same protocol, host and port that the browser is currently using
-const API_BASE_URL = import.meta.env.DEV ? `http://localhost:5023/api` : '/api';
+const API_BASE_URL = '/api';
 
 /**
  * Generic fetch helper with error handling
