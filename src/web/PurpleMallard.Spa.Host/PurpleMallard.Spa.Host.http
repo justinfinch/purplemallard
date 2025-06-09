@@ -1,0 +1,6 @@
+@PurpleMallard.Spa.Host_HostAddress = http://localhost:5023
+
+GET {{PurpleMallard.Spa.Host_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

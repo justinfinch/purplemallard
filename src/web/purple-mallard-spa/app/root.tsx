@@ -5,21 +5,21 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-} from "react-router";
+} from 'react-router';
 
-import type { Route } from "./+types/root";
-import "./app.css";
+import type { Route } from './+types/root';
+import './app.css';
 
 export const links: Route.LinksFunction = () => [
-  { rel: "preconnect", href: "https://fonts.googleapis.com" },
+  { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
   {
-    rel: "preconnect",
-    href: "https://fonts.gstatic.com",
-    crossOrigin: "anonymous",
+    rel: 'preconnect',
+    href: 'https://fonts.gstatic.com',
+    crossOrigin: 'anonymous',
   },
   {
-    rel: "stylesheet",
-    href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
+    rel: 'stylesheet',
+    href: 'https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap',
   },
 ];
 
@@ -42,20 +42,48 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  return <Outlet />;
+  return (
+    <>
+      <header className="bg-gray-800 text-white p-4">
+        <div className="container mx-auto flex justify-between items-center">
+          <h1 className="text-xl font-bold">Purple Mallard</h1>
+          <nav>
+            <ul className="flex space-x-4">
+              <li>
+                <a href="/" className="hover:text-gray-300">
+                  Home
+                </a>
+              </li>
+              <li>
+                <a href="/weather" className="hover:text-gray-300">
+                  Weather
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+      <main className="container mx-auto p-4">
+        <Outlet />
+      </main>
+      <footer className="bg-gray-800 text-white p-4 mt-8">
+        <div className="container mx-auto text-center">
+          <p>© {new Date().getFullYear()} Purple Mallard SPA - ASP.NET Core Integration Example</p>
+        </div>
+      </footer>
+    </>
+  );
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
-  let message = "Oops!";
-  let details = "An unexpected error occurred.";
+  let message = 'Oops!';
+  let details = 'An unexpected error occurred.';
   let stack: string | undefined;
 
   if (isRouteErrorResponse(error)) {
-    message = error.status === 404 ? "404" : "Error";
+    message = error.status === 404 ? '404' : 'Error';
     details =
-      error.status === 404
-        ? "The requested page could not be found."
-        : error.statusText || details;
+      error.status === 404 ? 'The requested page could not be found.' : error.statusText || details;
   } else if (import.meta.env.DEV && error && error instanceof Error) {
     details = error.message;
     stack = error.stack;
