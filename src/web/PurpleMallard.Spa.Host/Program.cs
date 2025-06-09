@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.SpaServices.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,12 +17,6 @@ builder.Services.AddCors(options =>
     });
 });
 
-// Add SPA static files
-builder.Services.AddSpaStaticFiles(configuration =>
-{
-    configuration.RootPath = "../purple-mallard-spa/build";
-});
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -35,7 +28,6 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-app.UseSpaStaticFiles();
 
 var summaries = new[]
 {
@@ -57,17 +49,8 @@ app.MapGet("/api/weatherforecast", () =>
 })
 .WithName("GetWeatherForecast");
 
-// Configure SPA
-app.UseSpa(spa =>
-{
-    spa.Options.SourcePath = "../purple-mallard-spa";
-
-    if (app.Environment.IsDevelopment())
-    {
-        // In development, proxy requests to the React dev server
-        spa.UseProxyToSpaDevelopmentServer("http://localhost:5173");
-    }
-});
+// Configure SPA - with SpaProxy, it will automatically handle this
+app.MapFallbackToFile("index.html");
 
 app.Run();
 

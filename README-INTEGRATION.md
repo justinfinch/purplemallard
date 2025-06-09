@@ -70,14 +70,15 @@ The solution uses:
 - **React Router v7** for frontend routing
 - **Fetch API** for making HTTP requests to the backend
 - **ASP.NET Core 9.0** for the backend API
-- **SPA Services Extensions** for integrating the React app with ASP.NET Core
+- **SpaProxy** for integrating the React app with ASP.NET Core (modern approach)
+- **Vite** as the frontend build tool and development server
 
 ## How It Works
 
-- In development, the React app runs on its own development server with hot-reloading
-- The ASP.NET Core backend runs separately and provides API endpoints
-- CORS is configured to allow the React development server to access the API
-- In production, ASP.NET Core serves both the API and the static SPA files
+- In development, SpaProxy automatically starts the Vite dev server and proxies requests to it
+- The ASP.NET Core backend provides API endpoints with `/api` prefix
+- In production, ASP.NET Core serves both the API and the static SPA files from a single origin
+- The fallback route redirects SPA navigation requests to `index.html`
 
 ## Troubleshooting
 
