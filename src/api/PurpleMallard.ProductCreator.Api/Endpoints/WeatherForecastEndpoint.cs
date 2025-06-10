@@ -14,6 +14,24 @@ public class WeatherForecastEndpoint : EndpointWithoutRequest<List<WeatherForeca
     {
         Get("/api/weatherforecast");
         AllowAnonymous();
+        Description(d => d
+            .WithName("GetWeatherForecast")
+            .WithTags("Weather")
+            .Produces<List<WeatherForecastResponse>>(200, "application/json")
+        );
+        Summary(s => {
+            s.Summary = "Get weather forecast data";
+            s.Description = "Retrieves a 5-day weather forecast with random temperatures";
+            s.ResponseExamples[200] = new List<WeatherForecastResponse> 
+            {
+                new WeatherForecastResponse 
+                {
+                    Date = DateOnly.FromDateTime(DateTime.Now.AddDays(1)),
+                    TemperatureC = 25,
+                    Summary = "Warm"
+                }
+            };
+        });
     }
 
     public override async Task HandleAsync(CancellationToken ct)

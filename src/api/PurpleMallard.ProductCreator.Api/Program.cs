@@ -1,18 +1,16 @@
 using FastEndpoints;
+using FastEndpoints.Swagger; // Add Swagger namespace
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddFastEndpoints();
-
-// Add CORS policy for development
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AllowReactDev", policy => 
-    {
-        policy.WithOrigins("http://localhost:5173", "http://127.0.0.1:5173") // Allow both localhost and IP address
-            .AllowAnyHeader()
-            .AllowAnyMethod()
-            .AllowCredentials(); // Allow credentials (cookies, auth headers)
-    });
+builder.Services.SwaggerDocument(o => {
+    o.DocumentSettings = s => {
+        s.Title = "Purple Mallard Product Creator API";
+        s.Version = "v1";
+        s.Description = "API for managing product creation in the Purple Mallard system";
+    };
+    o.EnableJWTBearerAuth = false; // Change to true if you implement JWT authentication
+    o.ShortSchemaNames = true;
 });
 
 var app = builder.Build();
@@ -20,7 +18,11 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseCors("AllowReactDev");
+    // Enable Swagger UI in development
+    app.UseSwaggerGen();
+    
+    // Add a redirect from root to swagger
+    app.MapGet("/", () => Results.Redirect("/swagger"));
 }
 
 app.UseHttpsRedirection();
