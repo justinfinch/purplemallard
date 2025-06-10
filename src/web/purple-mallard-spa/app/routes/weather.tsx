@@ -42,8 +42,8 @@ export default function WeatherPage() {
 
       {!loading && !error && (
         <div className="overflow-x-auto">
-          <table className="min-w-full bg-white border border-gray-200">
-            <thead className="bg-gray-100">
+          <table className="min-w-ful">
+            <thead>
               <tr>
                 <th className="py-2 px-4 border-b text-left">Date</th>
                 <th className="py-2 px-4 border-b text-left">Temperature (C)</th>
@@ -53,7 +53,7 @@ export default function WeatherPage() {
             </thead>
             <tbody>
               {weatherData.map((forecast, index) => (
-                <tr key={index} className={index % 2 === 0 ? 'bg-gray-50' : 'bg-white'}>
+                <tr key={index}>
                   <td className="py-2 px-4 border-b">{forecast.date}</td>
                   <td className="py-2 px-4 border-b">{forecast.temperatureC}°C</td>
                   <td className="py-2 px-4 border-b">{forecast.temperatureF}°F</td>
