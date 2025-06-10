@@ -16,6 +16,27 @@
         "kind": "build",
         "isDefault": true
       }
+    },
+    {
+      "label": "build-aspire",
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+        "build",
+        "${workspaceFolder}/src/PurpleMallard.AppHost/PurpleMallard.AppHost.csproj",
+        "/property:GenerateFullPaths=true",
+        "/consoleloggerparameters:NoSummary"
+      ],
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "build-all",
+      "dependsOn": ["build", "build-aspire"],
+      "dependsOrder": "sequence",
+      "group": {
+        "kind": "build",
+        "isDefault": false
+      }
     }
   ]
 }

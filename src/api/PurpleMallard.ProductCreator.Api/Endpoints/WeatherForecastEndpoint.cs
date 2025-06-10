@@ -12,7 +12,7 @@ public class WeatherForecastEndpoint : EndpointWithoutRequest<List<WeatherForeca
 
     public override void Configure()
     {
-        Get("/api/weatherforecast");
+        Get("/weatherforecast");
         AllowAnonymous();
         Description(d => d
             .WithName("GetWeatherForecast")

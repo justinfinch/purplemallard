@@ -5,24 +5,10 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "PurpleMallard.Spa.Host",
-      "type": "coreclr",
+      "name": "Debug",
+      "type": "dotnet",
       "request": "launch",
-      "preLaunchTask": "build",
-      "program": "${workspaceFolder}/src/web/PurpleMallard.Spa.Host/bin/Debug/net9.0/PurpleMallard.Spa.Host.dll",
-      "args": [],
-      "cwd": "${workspaceFolder}/src/web/PurpleMallard.Spa.Host",
-      "stopAtEntry": false,
-      "serverReadyAction": {
-        "action": "openExternally",
-        "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
-      },
-      "env": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      },
-      "sourceFileMap": {
-        "/Views": "${workspaceFolder}/Views"
-      }
+      "projectPath": "${workspaceFolder}/src/PurpleMallard.AppHost/PurpleMallard.AppHost.csproj"
     }
   ]
 }
