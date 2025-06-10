@@ -5,6 +5,8 @@ var productCreatorApi = builder.AddProject<Projects.PurpleMallard_ProductCreator
 
 // Add the SPA Host
 var spaHost = builder.AddProject<Projects.PurpleMallard_Spa_Host>("spahost")
-    .WithReference(productCreatorApi);
+    .WithReference(productCreatorApi)
+    .WaitFor(productCreatorApi)
+    .WithExternalHttpEndpoints();;
 
 builder.Build().Run();

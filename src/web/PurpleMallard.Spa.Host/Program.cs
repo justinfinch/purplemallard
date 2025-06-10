@@ -36,42 +36,6 @@ app.UseStaticFiles();
 
 app.UseHttpsRedirection();
 
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-// API endpoints
-// Local weather forecast API
-app.MapGet("/api/weatherforecast", () =>
-{
-    var forecast = Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-});
-
-// Proxy endpoint to forward requests to ProductCreator API
-app.MapGet("/api/productcreator/weatherforecast", async (IHttpClientFactory httpClientFactory) =>
-{
-    var client = httpClientFactory.CreateClient("ProductCreatorApi");
-    var response = await client.GetAsync("/api/weatherforecast");
-    
-    if (response.IsSuccessStatusCode)
-    {
-        var content = await response.Content.ReadFromJsonAsync<WeatherForecast[]>();
-        return Results.Ok(content);
-    }
-    
-    return Results.StatusCode((int)response.StatusCode);
-})
-.WithName("GetWeatherForecast");
-
 // Configure SPA - with SpaProxy, it will automatically handle this
 app.MapFallbackToFile("index.html");
 
