@@ -1,5 +1,9 @@
 
+using System.Net.Http.Json;
+using Microsoft.Extensions.Hosting;
+
 var builder = WebApplication.CreateBuilder(args);
+builder.AddServiceDefaults();
 
 // Add CORS policy for development
 builder.Services.AddCors(options =>
@@ -11,6 +15,12 @@ builder.Services.AddCors(options =>
             .AllowAnyMethod()
             .AllowCredentials(); // Allow credentials (cookies, auth headers)
     });
+});
+
+// Add service discovery to enable communication with the ProductCreator API
+builder.Services.AddHttpClient("ProductCreatorApi", (serviceProvider, client) =>
+{
+    client.BaseAddress = new Uri("http://productcreatorapi");
 });
 
 var app = builder.Build();
@@ -32,6 +42,7 @@ var summaries = new[]
 };
 
 // API endpoints
+// Local weather forecast API
 app.MapGet("/api/weatherforecast", () =>
 {
     var forecast = Enumerable.Range(1, 5).Select(index =>
@@ -43,6 +54,21 @@ app.MapGet("/api/weatherforecast", () =>
         ))
         .ToArray();
     return forecast;
+});
+
+// Proxy endpoint to forward requests to ProductCreator API
+app.MapGet("/api/productcreator/weatherforecast", async (IHttpClientFactory httpClientFactory) =>
+{
+    var client = httpClientFactory.CreateClient("ProductCreatorApi");
+    var response = await client.GetAsync("/api/weatherforecast");
+    
+    if (response.IsSuccessStatusCode)
+    {
+        var content = await response.Content.ReadFromJsonAsync<WeatherForecast[]>();
+        return Results.Ok(content);
+    }
+    
+    return Results.StatusCode((int)response.StatusCode);
 })
 .WithName("GetWeatherForecast");
 

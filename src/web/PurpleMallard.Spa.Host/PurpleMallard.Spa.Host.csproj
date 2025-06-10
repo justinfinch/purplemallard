@@ -13,6 +13,7 @@
     <ProjectReference Include="..\purple-mallard-spa\purple-mallard-spa.esproj">
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+    <ProjectReference Include="..\..\PurpleMallard.ServiceDefaults\PurpleMallard.ServiceDefaults.csproj" />
   </ItemGroup>
 
   <ItemGroup>

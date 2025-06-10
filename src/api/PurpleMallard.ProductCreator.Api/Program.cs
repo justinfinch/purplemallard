@@ -1,7 +1,9 @@
 using FastEndpoints;
 using FastEndpoints.Swagger; // Add Swagger namespace
+using Microsoft.Extensions.Hosting;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.AddServiceDefaults();
 builder.Services.AddFastEndpoints();
 builder.Services.SwaggerDocument(o => {
     o.DocumentSettings = s => {
