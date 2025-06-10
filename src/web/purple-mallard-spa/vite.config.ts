@@ -70,7 +70,7 @@ export default defineConfig({
   },
   server: {
     proxy: {
-      '/api/': {
+      '^/api/': {
         target,
         secure: false,
       },
