@@ -1,7 +1,6 @@
 import { fileURLToPath, URL } from 'node:url';
 
 import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
 import { reactRouter } from '@react-router/dev/vite';
 import tailwindcss from '@tailwindcss/vite';
 import tsconfigPaths from 'vite-tsconfig-paths';
@@ -59,11 +58,11 @@ const target = env.ASPNETCORE_HTTPS_PORT
   ? `https://localhost:${env.ASPNETCORE_HTTPS_PORT}`
   : env.ASPNETCORE_URLS
   ? env.ASPNETCORE_URLS.split(';')[0]
-  : 'https://localhost:6001';
+  : 'https://localhost:7205';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), reactRouter(), tailwindcss(), tsconfigPaths()],
+  plugins: [reactRouter(), tailwindcss(), tsconfigPaths()],
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
@@ -71,7 +70,7 @@ export default defineConfig({
   },
   server: {
     proxy: {
-      '/api': {
+      '/api/': {
         target,
         secure: false,
       },
