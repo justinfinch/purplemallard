@@ -1,0 +1,19 @@
+{
+  "folders": [
+    {
+      "name": "Root",
+      "path": "."
+    },
+    {
+      "name": "SPA",
+      "path": "./src/web/purple-mallard-spa"
+    }
+  ],
+  "settings": {
+    "files.exclude": {
+      "**/obj": true,
+      "**/bin": true,
+      "src/web/PurpleMallard.Spa.Host": true
+    }
+  }
+}
