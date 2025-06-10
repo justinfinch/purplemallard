@@ -16,44 +16,6 @@
         "kind": "build",
         "isDefault": true
       }
-    },
-    {
-      "label": "Start Purple Mallard SPA",
-      "type": "shell",
-      "command": "cd ${workspaceFolder}/src/web/purple-mallard-spa && npm run dev",
-      "group": "test",
-      "presentation": {
-        "reveal": "always",
-        "panel": "new",
-        "clear": true
-      },
-      "problemMatcher": [],
-      "isBackground": true,
-      "detail": "Starts the Purple Mallard SPA development server"
-    },
-    {
-      "label": "Start API",
-      "type": "shell",
-      "command": "cd ${workspaceFolder}/src/web/PurpleMallard.Spa.Host && dotnet run",
-      "group": "test",
-      "presentation": {
-        "reveal": "always",
-        "panel": "new",
-        "clear": true
-      },
-      "problemMatcher": [],
-      "isBackground": true,
-      "detail": "Starts the ASP.NET Core API server"
-    },
-    {
-      "label": "Start Full Stack",
-      "dependsOn": ["Start API", "Start Purple Mallard SPA"],
-      "group": {
-        "kind": "test",
-        "isDefault": true
-      },
-      "problemMatcher": [],
-      "detail": "Starts both the API and SPA servers"
     }
   ]
 }
