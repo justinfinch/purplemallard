@@ -23,9 +23,7 @@ builder.Services.AddAuthentication(oidcScheme)
     })
     .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme);
 
-builder.Services.AddAuthorization();
-
-builder.Services.AddBff();
+builder.Services.AddBff(builder.Configuration);
 
 var app = builder.Build();
 
@@ -36,6 +34,8 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapBffManagementEndpoints();
+
+app.MapReverseProxy();
 
 app.MapFallbackToFile("index.html");
 app.Run();
