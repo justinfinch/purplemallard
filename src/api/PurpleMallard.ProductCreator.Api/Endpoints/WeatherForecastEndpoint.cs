@@ -13,7 +13,8 @@ public class WeatherForecastEndpoint : EndpointWithoutRequest<List<WeatherForeca
     public override void Configure()
     {
         Get("/weatherforecast");
-        AllowAnonymous();
+        // Require authorization using our default policy
+        Policies("Default");
         Description(d => d
             .WithName("GetWeatherForecast")
             .WithTags("Weather")
