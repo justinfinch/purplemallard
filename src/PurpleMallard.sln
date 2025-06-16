@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PurpleMallard.ServiceDefaul
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PurpleMallard.AppHost", "PurpleMallard.AppHost\PurpleMallard.AppHost.csproj", "{E45F7EC3-C3F8-465C-B7DE-9A9D7130DEDD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PurpleMallard.Bff", "web\PurpleMallard.Bff\PurpleMallard.Bff.csproj", "{5CE92F97-10D3-4A86-AA89-E74DCC76D6D8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -73,6 +75,18 @@ Global
 		{E45F7EC3-C3F8-465C-B7DE-9A9D7130DEDD}.Release|x64.Build.0 = Release|Any CPU
 		{E45F7EC3-C3F8-465C-B7DE-9A9D7130DEDD}.Release|x86.ActiveCfg = Release|Any CPU
 		{E45F7EC3-C3F8-465C-B7DE-9A9D7130DEDD}.Release|x86.Build.0 = Release|Any CPU
+		{5CE92F97-10D3-4A86-AA89-E74DCC76D6D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5CE92F97-10D3-4A86-AA89-E74DCC76D6D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5CE92F97-10D3-4A86-AA89-E74DCC76D6D8}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{5CE92F97-10D3-4A86-AA89-E74DCC76D6D8}.Debug|x64.Build.0 = Debug|Any CPU
+		{5CE92F97-10D3-4A86-AA89-E74DCC76D6D8}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5CE92F97-10D3-4A86-AA89-E74DCC76D6D8}.Debug|x86.Build.0 = Debug|Any CPU
+		{5CE92F97-10D3-4A86-AA89-E74DCC76D6D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5CE92F97-10D3-4A86-AA89-E74DCC76D6D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5CE92F97-10D3-4A86-AA89-E74DCC76D6D8}.Release|x64.ActiveCfg = Release|Any CPU
+		{5CE92F97-10D3-4A86-AA89-E74DCC76D6D8}.Release|x64.Build.0 = Release|Any CPU
+		{5CE92F97-10D3-4A86-AA89-E74DCC76D6D8}.Release|x86.ActiveCfg = Release|Any CPU
+		{5CE92F97-10D3-4A86-AA89-E74DCC76D6D8}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -80,5 +94,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{132CF311-871C-4476-B5D3-92DC45665195} = {256F4E96-6A73-9ABE-786F-840C672A50F4}
 		{8593D524-4C3C-49C1-93B7-0CD985BDD083} = {D82C56D6-B2CD-F611-9E31-04638F7EC30E}
+		{5CE92F97-10D3-4A86-AA89-E74DCC76D6D8} = {256F4E96-6A73-9ABE-786F-840C672A50F4}
 	EndGlobalSection
 EndGlobal
