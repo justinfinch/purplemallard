@@ -6,11 +6,7 @@ import {
   Scripts,
   ScrollRestoration,
 } from 'react-router';
-import { AuthProvider, useAuth } from './contexts/AuthContext';
-import ProtectedRoute from './components/ProtectedRoute';
-import UserProfile from './components/UserProfile';
-import AuthLoading from './components/AuthLoading';
-import useAuthCheck from './hooks/useAuthCheck';
+import { AuthProvider, useAuth, ProtectedRoute, UserProfile, AuthLoading } from './modules/auth';
 
 import type { Route } from './+types/root';
 import './app.css';
@@ -47,8 +43,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 function AppContent() {
-  const { isAuthenticated } = useAuth();
-  const { isLoading } = useAuthCheck();
+  const { isAuthenticated, isLoading } = useAuth();
 
   // If still loading authentication status, show loading spinner
   if (isLoading) {

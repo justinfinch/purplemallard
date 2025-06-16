@@ -9,6 +9,7 @@ interface ProtectedRouteProps {
 export default function ProtectedRoute({ children }: ProtectedRouteProps) {
   const { isAuthenticated, isLoading, login } = useAuth();
 
+  // Effect to handle authentication redirects
   useEffect(() => {
     if (!isLoading && !isAuthenticated) {
       // User is not authenticated, redirect to login

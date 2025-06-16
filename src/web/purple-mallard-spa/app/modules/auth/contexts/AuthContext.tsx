@@ -39,9 +39,20 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   };
 
-  // Check authentication status on component mount
+  // Check authentication status on component mount and set up periodic refresh
   useEffect(() => {
+    // Initial authentication check
     refreshUser();
+
+    // Set up periodic refresh to keep the session alive and update user data
+    const refreshInterval = setInterval(() => {
+      refreshUser();
+    }, 5 * 60 * 1000); // Check every 5 minutes
+
+    // Clean up interval on unmount
+    return () => {
+      clearInterval(refreshInterval);
+    };
   }, []);
 
   // Login function that will redirect the user to the login page
