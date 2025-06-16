@@ -22,11 +22,8 @@ public sealed class BffOptions
     /// </summary>
     public PathString UserPath => BffBasePath.Add(Constants.BffEndpoints.User);
 
-/// <summary>
+    /// <summary>
     /// Logout endpoint
     /// </summary>
     public PathString LogoutPath => BffBasePath.Add(Constants.BffEndpoints.Logout);
-    
-    internal Action<OpenIdConnectOptions>? ConfigureOpenIdConnectDefaults { get; set; }
-    internal Action<CookieAuthenticationOptions>? ConfigureCookieDefaults { get; set; }
 }

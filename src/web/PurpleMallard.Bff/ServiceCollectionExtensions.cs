@@ -7,7 +7,7 @@ namespace PurpleMallard.Bff;
 
 public static class ServiceCollectionExtensions
 {
-    public static BffBuilder AddBff(this IServiceCollection services)
+    public static IServiceCollection AddBff(this IServiceCollection services)
     {
         services.AddDistributedMemoryCache();
 
@@ -16,9 +16,6 @@ public static class ServiceCollectionExtensions
         services.AddTransient<ILoginEndpoint, LoginEndpoint>();
         services.AddTransient<IUserEndpoint, UserEndpoint>();
 
-        // wrap ASP.NET Core
-        services.AddAuthentication();
-
-        return new BffBuilder(services);
+        return services;
     }
 }

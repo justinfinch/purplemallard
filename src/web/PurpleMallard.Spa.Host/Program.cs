@@ -1,41 +1,31 @@
 
+using System.IdentityModel.Tokens.Jwt;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using PurpleMallard.Bff;
-
 
 var builder = WebApplication.CreateBuilder(args);
 builder.AddServiceDefaults();
 
-builder.Services.AddBff()
-    .WithDefaultOpenIdConnectOptions(options =>
-    {
-        options.Authority = "https://tbd";
-        options.ClientId = "interactive.confidential";
-        options.ClientSecret = "secret";
-        options.ResponseType = "code";
-        options.ResponseMode = "query";
+var oidcScheme = OpenIdConnectDefaults.AuthenticationScheme;
 
-        options.GetClaimsFromUserInfoEndpoint = true;
+builder.Services.AddAuthentication(oidcScheme)
+    .AddKeycloakOpenIdConnect("keycloak", realm: "PurpleMallard", oidcScheme, options =>
+    {
+        options.ClientId = "PurpleMallard_Spa_Host";
+        options.ClientSecret = "8mfUcAJj8YIylWWXWs6EYL025M6b4LyH";
+        options.ResponseType = OpenIdConnectResponseType.Code;
+        options.RequireHttpsMetadata = false;
+        options.TokenValidationParameters.NameClaimType = JwtRegisteredClaimNames.Name;
         options.SaveTokens = true;
-        options.MapInboundClaims = false;
-
-        options.Scope.Clear();
-        options.Scope.Add("openid");
-        options.Scope.Add("profile");
-
-        // Add this scope if you want to receive refresh tokens
-        options.Scope.Add("offline_access");
+        options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
     })
-    .WithDefaultCookieOptions(options =>
-    {
-        // Because we use an identity server that's configured on a different site
-        // (domain.com vs localhost), we need to configure the SameSite property to Lax.
-        // Setting it to Strict would cause the authentication cookie not to be sent after logging in.
-        // The user would have to refresh the page to get the cookie.
-        // Recommendation: Set it to 'strict' if your IDP is on the same site as your BFF.
-        options.Cookie.SameSite = SameSiteMode.Lax;
-    });
+    .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme);
 
 builder.Services.AddAuthorization();
+
+builder.Services.AddBff();
 
 var app = builder.Build();
 
