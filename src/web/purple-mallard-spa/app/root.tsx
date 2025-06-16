@@ -6,6 +6,11 @@ import {
   Scripts,
   ScrollRestoration,
 } from 'react-router';
+import { AuthProvider, useAuth } from './contexts/AuthContext';
+import ProtectedRoute from './components/ProtectedRoute';
+import UserProfile from './components/UserProfile';
+import AuthLoading from './components/AuthLoading';
+import useAuthCheck from './hooks/useAuthCheck';
 
 import type { Route } from './+types/root';
 import './app.css';
@@ -41,30 +46,48 @@ export function Layout({ children }: { children: React.ReactNode }) {
   );
 }
 
-export default function App() {
+function AppContent() {
+  const { isAuthenticated } = useAuth();
+  const { isLoading } = useAuthCheck();
+
+  // If still loading authentication status, show loading spinner
+  if (isLoading) {
+    return <AuthLoading />;
+  }
+
   return (
     <>
       <header className="bg-gray-800 text-white p-4">
         <div className="container mx-auto flex justify-between items-center">
           <h1 className="text-xl font-bold">Purple Mallard</h1>
-          <nav>
-            <ul className="flex space-x-4">
-              <li>
-                <a href="/" className="hover:text-gray-300">
-                  Home
-                </a>
-              </li>
-              <li>
-                <a href="/weather" className="hover:text-gray-300">
-                  Weather
-                </a>
-              </li>
-            </ul>
-          </nav>
+          <div className="flex items-center space-x-6">
+            <nav>
+              <ul className="flex space-x-4">
+                <li>
+                  <a href="/" className="hover:text-gray-300">
+                    Home
+                  </a>
+                </li>
+                <li>
+                  <a href="/weather" className="hover:text-gray-300">
+                    Weather
+                  </a>
+                </li>
+              </ul>
+            </nav>
+            {isAuthenticated && <UserProfile />}
+          </div>
         </div>
       </header>
       <main className="container mx-auto p-4">
-        <Outlet />
+        {/* Use the ProtectedRoute component to wrap all routes */}
+        {isLoading ? (
+          <AuthLoading />
+        ) : (
+          <ProtectedRoute>
+            <Outlet />
+          </ProtectedRoute>
+        )}
       </main>
       <footer className="bg-gray-800 text-white p-4 mt-8">
         <div className="container mx-auto text-center">
@@ -72,6 +95,14 @@ export default function App() {
         </div>
       </footer>
     </>
+  );
+}
+
+export default function App() {
+  return (
+    <AuthProvider>
+      <AppContent />
+    </AuthProvider>
   );
 }
 
@@ -84,7 +115,7 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
     message = error.status === 404 ? '404' : 'Error';
     details =
       error.status === 404 ? 'The requested page could not be found.' : error.statusText || details;
-  } else if (import.meta.env.DEV && error && error instanceof Error) {
+  } else if (error && error instanceof Error) {
     details = error.message;
     stack = error.stack;
   }
