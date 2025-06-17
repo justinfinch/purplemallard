@@ -20,12 +20,14 @@ builder.Services.AddAuthentication(options =>
     .AddKeycloakOpenIdConnect("keycloak", realm: "PurpleMallard", oidcScheme, options =>
     {
         options.ClientId = "PurpleMallard_Spa_Host";
-        options.ClientSecret = "8mfUcAJj8YIylWWXWs6EYL025M6b4LyH";
+        options.ClientSecret = "e0SbiGMUiDg71KyKjN8jzcN31HVJqFVg";
         options.ResponseType = OpenIdConnectResponseType.Code;
         options.RequireHttpsMetadata = false;
         options.TokenValidationParameters.NameClaimType = JwtRegisteredClaimNames.Name;
         options.SaveTokens = true;
         options.SignInScheme = cookieScheme;
+
+        options.Scope.Add("purple-mallard-spa:all");
     })
     .AddCookie(cookieScheme);
 

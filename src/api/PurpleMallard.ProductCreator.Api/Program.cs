@@ -18,12 +18,12 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             options.TokenValidationParameters = new TokenValidationParameters
             {
                 ValidateIssuer = true,
-                ValidateAudience = false,
+                ValidateAudience = true,
                 ValidateLifetime = true,
                 ValidateIssuerSigningKey = true,
-                // You can specify the audience if you have a specific API client in Keycloak
-                // options.Audience = "api-client";
             };
+
+            options.Audience = "product-creator-api"; // Set the audience for the API
         });
 
 // Configure authorization with a default policy that requires authentication

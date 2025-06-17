@@ -1,6 +1,9 @@
 var builder = DistributedApplication.CreateBuilder(args);
 
-var keycloak = builder.AddKeycloak("keycloak", 8080)
+var kcUsername = builder.AddParameter("admin", value: "admin");
+var kcPassword = builder.AddParameter("password", secret: true, value: "password");
+
+var keycloak = builder.AddKeycloak("keycloak", 8080, kcUsername, kcPassword)
     .WithDataVolume()
     .WithRealmImport("./realms")
     .WithExternalHttpEndpoints();
