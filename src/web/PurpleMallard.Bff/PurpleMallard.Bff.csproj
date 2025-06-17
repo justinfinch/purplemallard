@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <PackageReference Include="Aspire.Keycloak.Authentication" Version="9.3.1-preview.1.25305.6" />
+    <PackageReference Include="Duende.AccessTokenManagement.OpenIdConnect" Version="4.0.0-Preview.2" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="9.0.6" />
     <PackageReference Include="Microsoft.Extensions.ServiceDiscovery.Yarp" Version="9.3.0" />
     <PackageReference Include="Yarp.ReverseProxy" Version="2.3.0" />

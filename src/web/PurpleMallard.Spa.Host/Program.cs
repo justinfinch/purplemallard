@@ -9,8 +9,14 @@ var builder = WebApplication.CreateBuilder(args);
 builder.AddServiceDefaults();
 
 var oidcScheme = OpenIdConnectDefaults.AuthenticationScheme;
+var cookieScheme = CookieAuthenticationDefaults.AuthenticationScheme;
 
-builder.Services.AddAuthentication(oidcScheme)
+builder.Services.AddAuthentication(options => 
+    {
+        options.DefaultScheme = cookieScheme;
+        options.DefaultChallengeScheme = oidcScheme;
+        options.DefaultSignOutScheme = oidcScheme;
+    })
     .AddKeycloakOpenIdConnect("keycloak", realm: "PurpleMallard", oidcScheme, options =>
     {
         options.ClientId = "PurpleMallard_Spa_Host";
@@ -19,9 +25,9 @@ builder.Services.AddAuthentication(oidcScheme)
         options.RequireHttpsMetadata = false;
         options.TokenValidationParameters.NameClaimType = JwtRegisteredClaimNames.Name;
         options.SaveTokens = true;
-        options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+        options.SignInScheme = cookieScheme;
     })
-    .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme);
+    .AddCookie(cookieScheme);
 
 builder.Services.AddBff(builder.Configuration);
 

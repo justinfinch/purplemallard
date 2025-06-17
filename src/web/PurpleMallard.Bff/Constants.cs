@@ -49,4 +49,17 @@ public static class Constants
         /// </summary>
         public const string SessionState = "bff:session_state";
     }
+
+    public static class Yarp
+    {
+        /// <summary>
+        /// Name of token type (User, Client, UserOrClient) metadata
+        /// </summary>
+        public const string TokenTypeMetadata = "PurpleMallard.Bff.Yarp.TokenType";
+
+        /// <summary>
+        /// Name of Anti-forgery check metadata
+        /// </summary>
+        public const string AntiforgeryCheckMetadata = "PurpleMallard.Bff.Yarp.AntiforgeryCheck";
+    }
 }
