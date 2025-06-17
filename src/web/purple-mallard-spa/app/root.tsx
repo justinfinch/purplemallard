@@ -1,10 +1,12 @@
 import {
   isRouteErrorResponse,
   Links,
+  Link,
   Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
+  useNavigate,
 } from 'react-router';
 import { AuthProvider, useAuth, ProtectedRoute, UserProfile, AuthLoading } from './modules/auth';
 
@@ -59,14 +61,14 @@ function AppContent() {
             <nav>
               <ul className="flex space-x-4">
                 <li>
-                  <a href="/" className="hover:text-gray-300">
+                  <Link to="/" className="hover:text-gray-300">
                     Home
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="/weather" className="hover:text-gray-300">
+                  <Link to="/weather" className="hover:text-gray-300">
                     Weather
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </nav>

@@ -1,5 +1,6 @@
 import type { Route } from './+types/home';
 import { Welcome } from '../welcome/welcome';
+import { Link } from 'react-router';
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -31,12 +32,12 @@ export default function Home() {
             Check out the Weather Forecast page to see real-time data fetched from the ASP.NET Core
             backend API.
           </p>
-          <a
-            href="/weather"
+          <Link
+            to="/weather"
             className="inline-block px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
           >
             View Weather Forecast
-          </a>
+          </Link>
         </div>
       </div>
     </div>
