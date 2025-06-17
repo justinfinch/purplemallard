@@ -8,10 +8,15 @@ using PurpleMallard.Bff;
 var builder = WebApplication.CreateBuilder(args);
 builder.AddServiceDefaults();
 
+builder.Services.AddBff(builder.Configuration);
+
+// Add Redis distributed caching
+builder.AddRedisDistributedCache("cache");
+
 var oidcScheme = OpenIdConnectDefaults.AuthenticationScheme;
 var cookieScheme = CookieAuthenticationDefaults.AuthenticationScheme;
 
-builder.Services.AddAuthentication(options => 
+builder.Services.AddAuthentication(options =>
     {
         options.DefaultScheme = cookieScheme;
         options.DefaultChallengeScheme = oidcScheme;
@@ -29,9 +34,11 @@ builder.Services.AddAuthentication(options =>
 
         options.Scope.Add("purple-mallard-spa:all");
     })
-    .AddCookie(cookieScheme);
-
-builder.Services.AddBff(builder.Configuration);
+    .AddCookie(cookieScheme, options =>
+    {
+        options.Cookie.Name = "PurpleMallard_Spa_Host";
+        options.Cookie.SameSite = SameSiteMode.Lax;
+    });
 
 var app = builder.Build();
 
@@ -41,6 +48,7 @@ app.UseStaticFiles();
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
+
 app.MapBffManagementEndpoints();
 
 app.MapReverseProxy();

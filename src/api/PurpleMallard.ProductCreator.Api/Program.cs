@@ -5,6 +5,10 @@ using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.AddServiceDefaults();
+
+// Add Redis distributed caching
+builder.AddRedisDistributedCache("cache");
+
 builder.Services.AddFastEndpoints();
 
 // Configure authentication
