@@ -35,6 +35,7 @@
         // AI assistance
         "GitHub.copilot-chat",
         "GitHub.copilot",
+        "ms-toolsai.prompty",
 
         // React/Web development
         "esbenp.prettier-vscode",
