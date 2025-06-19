@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PurpleMallard.Spa.Host", "w
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "api", "api", "{D82C56D6-B2CD-F611-9E31-04638F7EC30E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PurpleMallard.ProductCreator.Api", "api\PurpleMallard.ProductCreator.Api\PurpleMallard.ProductCreator.Api.csproj", "{8593D524-4C3C-49C1-93B7-0CD985BDD083}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PurpleMallard.Products.Api", "api\PurpleMallard.Products.Api\PurpleMallard.Products.Api.csproj", "{8593D524-4C3C-49C1-93B7-0CD985BDD083}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PurpleMallard.ServiceDefaults", "PurpleMallard.ServiceDefaults\PurpleMallard.ServiceDefaults.csproj", "{17E26493-A918-4947-95A4-49E6F76FD8B1}"
 EndProject

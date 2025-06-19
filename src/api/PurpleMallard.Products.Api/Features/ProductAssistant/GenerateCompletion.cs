@@ -1,9 +1,9 @@
 using System.Text.Json;
 using FastEndpoints;
 using Microsoft.Extensions.Caching.Distributed;
-using PurpleMallard.ProductCreator.Api.Features.ProductAssistant.Agents;
+using PurpleMallard.Products.Api.Features.ProductAssistant.Agents;
 
-namespace PurpleMallard.ProductCreator.Api.Features.ProductAssistant;
+namespace PurpleMallard.Products.Api.Features.ProductAssistant;
 
 // Request DTO
 public sealed class GenerateCompletionRequest

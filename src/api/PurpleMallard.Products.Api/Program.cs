@@ -2,7 +2,7 @@ using FastEndpoints;
 using FastEndpoints.Swagger; // Add Swagger namespace
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
-using PurpleMallard.ProductCreator.Api.Features.ProductAssistant;
+using PurpleMallard.Products.Api.Features.ProductAssistant;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.AddServiceDefaults();
@@ -28,7 +28,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 ValidateIssuerSigningKey = true,
             };
 
-            options.Audience = "product-creator-api"; // Set the audience for the API
+            options.Audience = "products-api"; // Set the audience for the API
         });
 
 // Configure authorization with a default policy that requires authentication
@@ -43,9 +43,9 @@ builder.Services.SwaggerDocument(o =>
 {
     o.DocumentSettings = s =>
     {
-        s.Title = "Purple Mallard Product Creator API";
+        s.Title = "Purple Mallard Products API";
         s.Version = "v1";
-        s.Description = "API for managing product creation in the Purple Mallard system";
+        s.Description = "API for managing products in the Purple Mallard system";
     };
     o.EnableJWTBearerAuth = true; // Enable JWT authentication in Swagger
     o.ShortSchemaNames = true;

@@ -4,7 +4,7 @@ using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.ChatCompletion;
 using Microsoft.SemanticKernel.Connectors.OpenAI;
 
-namespace PurpleMallard.ProductCreator.Api.Features.ProductAssistant.Agents;
+namespace PurpleMallard.Products.Api.Features.ProductAssistant.Agents;
 
 /// <summary>
 /// Handles product-related conversations and coordinates with the other product assistant agents.

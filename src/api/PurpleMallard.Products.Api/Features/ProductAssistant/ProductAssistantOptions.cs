@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace PurpleMallard.ProductCreator.Api.Features.ProductAssistant;
+namespace PurpleMallard.Products.Api.Features.ProductAssistant;
 
 public sealed class ProductAssistantOptions
 {

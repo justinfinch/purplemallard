@@ -46,7 +46,7 @@ export const apiService = {
    * Get weather forecast data from the API
    */
   getWeatherForecast: () => {
-    return fetchApi<WeatherForecast[]>('/product-creator/weatherforecast');
+    return fetchApi<WeatherForecast[]>('/products/weatherforecast');
   },
 
   // Add more API methods as needed

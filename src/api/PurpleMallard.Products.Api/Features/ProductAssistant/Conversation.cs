@@ -1,4 +1,4 @@
-namespace PurpleMallard.ProductCreator.Api.Features.ProductAssistant;
+namespace PurpleMallard.Products.Api.Features.ProductAssistant;
 
 public class Conversation
 {

@@ -15,9 +15,8 @@
     <PackageReference Include="Aspire.Hosting.Keycloak" Version="9.3.1-preview.1.25305.6" />
     <PackageReference Include="Aspire.Hosting.Redis" Version="9.3.1" />
   </ItemGroup>
-
   <ItemGroup>
-    <ProjectReference Include="../api/PurpleMallard.ProductCreator.Api/PurpleMallard.ProductCreator.Api.csproj" />
+    <ProjectReference Include="../api/PurpleMallard.Products.Api/PurpleMallard.Products.Api.csproj" />
     <ProjectReference Include="../web/PurpleMallard.Spa.Host/PurpleMallard.Spa.Host.csproj" />
   </ItemGroup>
 

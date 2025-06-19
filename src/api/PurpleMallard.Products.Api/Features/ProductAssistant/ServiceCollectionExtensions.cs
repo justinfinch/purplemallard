@@ -1,11 +1,8 @@
-using System;
 using Microsoft.Extensions.Options;
 using Microsoft.SemanticKernel;
-using Microsoft.SemanticKernel.ChatCompletion;
-using Microsoft.SemanticKernel.Connectors.AzureOpenAI;
-using PurpleMallard.ProductCreator.Api.Features.ProductAssistant.Agents;
+using PurpleMallard.Products.Api.Features.ProductAssistant.Agents;
 
-namespace PurpleMallard.ProductCreator.Api.Features.ProductAssistant;
+namespace PurpleMallard.Products.Api.Features.ProductAssistant;
 
 public static class ServiceCollectionExtensions
 {

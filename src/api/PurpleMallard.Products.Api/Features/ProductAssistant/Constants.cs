@@ -1,6 +1,6 @@
 using System;
 
-namespace PurpleMallard.ProductCreator.Api.Features.ProductAssistant;
+namespace PurpleMallard.Products.Api.Features.ProductAssistant;
 
 public static class Constants
 {

@@ -2,7 +2,7 @@ using System.Text.Json;
 using FastEndpoints;
 using Microsoft.Extensions.Caching.Distributed;
 
-namespace PurpleMallard.ProductCreator.Api.Features.ProductAssistant;
+namespace PurpleMallard.Products.Api.Features.ProductAssistant;
 
 // Request DTO
 public sealed class GetConversationRequest

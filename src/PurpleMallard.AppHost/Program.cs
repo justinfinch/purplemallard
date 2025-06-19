@@ -13,19 +13,19 @@ var redis = builder.AddRedis("cache")
     .WithDataVolume()
     .WithRedisCommander();
 
-// Add the ProductCreator API
-var productCreatorApi = builder.AddProject<Projects.PurpleMallard_ProductCreator_Api>("productcreatorapi")
+// Add the Products API
+var productsApi = builder.AddProject<Projects.PurpleMallard_Products_Api>("productsapi")
     .WithReference(keycloak)
     .WithReference(redis)
     .WaitFor(redis)
-    .WaitFor(keycloak); 
+    .WaitFor(keycloak);
 
 // Add the SPA Host (with YARP Reverse Proxy)
 var spaHost = builder.AddProject<Projects.PurpleMallard_Spa_Host>("spahost")
-    .WithReference(productCreatorApi)
+    .WithReference(productsApi)
     .WithReference(keycloak)
     .WithReference(redis)
-    .WaitFor(productCreatorApi)
+    .WaitFor(productsApi)
     .WaitFor(keycloak)
     .WaitFor(redis)
     .WithExternalHttpEndpoints();
