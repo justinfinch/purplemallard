@@ -21,16 +21,15 @@ public sealed class GenerateCompletionResponse
     public DateTime CreatedAt { get; set; }
 }
 
-// FastEndpoints Endpoint
 public sealed class GenerateCompletionEndpoint : Endpoint<GenerateCompletionRequest, GenerateCompletionResponse>
 {
     private readonly IDistributedCache _cache;
-    private readonly IProductAssistantConversationService _conversationService;
+    private readonly IProductAssistantAgent _productAssistantAgent;
 
-    public GenerateCompletionEndpoint(IDistributedCache cache, IProductAssistantConversationService conversationService)
+    public GenerateCompletionEndpoint(IDistributedCache cache, IProductAssistantAgent productAssistantAgent)
     {
         _cache = cache;
-        _conversationService = conversationService;
+        _productAssistantAgent = productAssistantAgent;
     }
 
     public override void Configure()
@@ -39,11 +38,11 @@ public sealed class GenerateCompletionEndpoint : Endpoint<GenerateCompletionRequ
         Summary(s =>
         {
             s.Summary = "Generate a completion for a conversation";
-            s.Description = "Generates an AI completion for the given conversation using the ProductConversationAgent and updates the conversation in cache";
-            s.ExampleRequest = new GenerateCompletionRequest 
-            { 
+            s.Description = "Generates an AI completion for the given conversation using the ProductAssistantAgent and updates the conversation in cache";
+            s.ExampleRequest = new GenerateCompletionRequest
+            {
                 ConversationId = Guid.NewGuid(),
-                Prompt = "Can you help me create a product description for a wireless headphone?" 
+                Prompt = "Can you help me create a product description for a wireless headphone?"
             };
             s.ResponseExamples[200] = new GenerateCompletionResponse
             {
@@ -53,6 +52,7 @@ public sealed class GenerateCompletionEndpoint : Endpoint<GenerateCompletionRequ
                 CreatedAt = DateTime.UtcNow
             };
         });
+        AllowAnonymous();
     }
 
     public override async Task HandleAsync(GenerateCompletionRequest req, CancellationToken ct)
@@ -100,8 +100,8 @@ public sealed class GenerateCompletionEndpoint : Endpoint<GenerateCompletionRequ
             // Add the user message to the conversation
             conversation.AddMessage(req.Prompt, MessageRole.User);
 
-            // Generate completion using the ProductAssistantConversationService
-            var completionContent = await _conversationService.GenerateCompletionAsync(
+            // Generate completion using the ProductAssistantAgent
+            var completionContent = await _productAssistantAgent.GenerateCompletionAsync(
                 conversation, 
                 ct);
 

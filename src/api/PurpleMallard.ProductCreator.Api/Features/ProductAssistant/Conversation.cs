@@ -2,15 +2,15 @@ namespace PurpleMallard.ProductCreator.Api.Features.ProductAssistant;
 
 public class Conversation
 {
-    public Guid Id { get; private set; }
-    public string UserId { get; private set; } = string.Empty;
-    public string Title { get; private set; } = string.Empty;
-    public DateTime CreatedAt { get; private set; }
-    public DateTime? LastMessageAt { get; private set; }
-    public ConversationStatus Status { get; private set; }
-    public List<ConversationMessage> Messages { get; private set; }
+    public Guid Id { get; set; }
+    public string UserId { get; set; } = string.Empty;
+    public string Title { get; set; } = string.Empty;
+    public DateTime CreatedAt { get; set; }
+    public DateTime? LastMessageAt { get; set; }
+    public ConversationStatus Status { get; set; }
+    public List<ConversationMessage> Messages { get; set; }
 
-    private Conversation() 
+    public Conversation() 
     {
         Messages = new List<ConversationMessage>();
     }
@@ -65,14 +65,14 @@ public class Conversation
 
 public class ConversationMessage
 {
-    public Guid Id { get; private set; }
-    public Guid ConversationId { get; private set; }
-    public string Content { get; private set; } = string.Empty;
-    public MessageRole Role { get; private set; }
-    public DateTime CreatedAt { get; private set; }
-    public string? Metadata { get; private set; } // For storing additional AI model info, tokens, etc.
+    public Guid Id { get; set; }
+    public Guid ConversationId { get; set; }
+    public string Content { get; set; } = string.Empty;
+    public MessageRole Role { get; set; }
+    public DateTime CreatedAt { get; set; }
+    public string? Metadata { get; set; } // For storing additional AI model info, tokens, etc.
 
-    private ConversationMessage() { }
+    public ConversationMessage() { }
 
     public static ConversationMessage Create(Guid conversationId, string content, MessageRole role, string? metadata = null)
     {

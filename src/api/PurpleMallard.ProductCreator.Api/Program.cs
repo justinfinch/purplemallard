@@ -61,9 +61,6 @@ if (app.Environment.IsDevelopment())
 {
     // Enable Swagger UI in development
     app.UseSwaggerGen();
-    
-    // Add a redirect from root to swagger
-    app.MapGet("/", () => Results.Redirect("/swagger"));
 }
 
 app.UseHttpsRedirection();

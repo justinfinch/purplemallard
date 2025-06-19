@@ -16,7 +16,7 @@ namespace PurpleMallard.ProductCreator.Api.Features.ProductAssistant.Agents;
 /// This agent is designed to work in conjunction with other agents, such as the ProductCreationAgent,
 /// ProductRecommendationAgent, and ProductFeedbackAgent, to provide a comprehensive product assistant experience.
 /// </summary>
-public interface IProductAssistantConversationService
+public interface IProductAssistantAgent
 {
 
     Task<string> GenerateCompletionAsync(
@@ -24,8 +24,8 @@ public interface IProductAssistantConversationService
         CancellationToken cancellationToken = default);
 }
 
-public class ProductAssistantConversationService(
-    [FromKeyedServices(Constants.ProductAssistantServiceKeys.ProductAssistantKernel)] Kernel kernel) : IProductAssistantConversationService
+public class ProductAssistantAgent(
+    [FromKeyedServices(Constants.ProductAssistantServiceKeys.ProductAssistantKernel)] Kernel kernel) : IProductAssistantAgent
 {
     public async Task<string> GenerateCompletionAsync(
         Conversation conversation,

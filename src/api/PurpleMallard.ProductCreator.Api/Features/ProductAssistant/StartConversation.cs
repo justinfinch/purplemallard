@@ -54,6 +54,7 @@ public sealed class StartConversationEndpoint : Endpoint<StartConversationReques
                 UserId = "user123"
             };
         });
+        AllowAnonymous();
     }
 
     public override async Task HandleAsync(StartConversationRequest req, CancellationToken ct)

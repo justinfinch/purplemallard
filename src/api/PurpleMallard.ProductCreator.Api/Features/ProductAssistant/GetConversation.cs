@@ -76,7 +76,7 @@ public sealed class GetConversationEndpoint : Endpoint<GetConversationRequest, G
         var userId = User.FindFirst("UserId")?.Value ?? User.FindFirst("sub")?.Value ?? "anonymous";
         
         // Retrieve conversation from Redis
-        var cacheKey = $"conversation:{req.ConversationId}";
+        var cacheKey = CacheKeys.Conversation(req.ConversationId);
         var conversationJson = await _cache.GetStringAsync(cacheKey, ct);
         
         if (string.IsNullOrEmpty(conversationJson))

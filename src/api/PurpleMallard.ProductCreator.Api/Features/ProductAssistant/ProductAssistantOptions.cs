@@ -8,7 +8,7 @@ public sealed class ProductAssistantOptions
     public const string SectionName = "ProductAssistant";
 
     [Required]
-    public required AzureOpenAIOptions AssistantLlm { get; set; }
+    public required AzureOpenAIOptions AzureOpenAI { get; set; }
 
 }
 

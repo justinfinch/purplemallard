@@ -20,10 +20,10 @@ public static class ServiceCollectionExtensions
             .GetRequiredService<IOptions<ProductAssistantOptions>>().Value;
 
         services.AddAzureOpenAIChatCompletion(
-            deploymentName: options.AssistantLlm.ChatDeploymentName,
-            apiKey: options.AssistantLlm.ApiKey,
-            endpoint: options.AssistantLlm.Endpoint,
-            modelId: options.AssistantLlm.ModelId,
+            deploymentName: options.AzureOpenAI.ChatDeploymentName,
+            apiKey: options.AzureOpenAI.ApiKey,
+            endpoint: options.AzureOpenAI.Endpoint,
+            modelId: options.AzureOpenAI.ModelId,
             serviceId: Constants.ProductAssistantServiceKeys.ProductAssistantLlm
         );
 
@@ -32,7 +32,7 @@ public static class ServiceCollectionExtensions
             return new Kernel(sp);
         });
 
-        services.AddScoped<IProductAssistantConversationService, ProductAssistantConversationService>();
+        services.AddScoped<IProductAssistantAgent, ProductAssistantAgent>();
 
         return services;
     }
