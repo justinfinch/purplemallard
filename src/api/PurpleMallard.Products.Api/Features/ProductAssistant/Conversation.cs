@@ -1,5 +1,9 @@
 namespace PurpleMallard.Products.Api.Features.ProductAssistant;
 
+// Do we need to do this.  Can it be replaced with these concepts from Azure AI Servies.
+//https://learn.microsoft.com/en-us/azure/ai-foundry/agents/concepts/threads-runs-messages
+//https://learn.microsoft.com/en-us/semantic-kernel/frameworks/agent/agent-types/azure-ai-agent?pivots=programming-language-csharp
+
 public class Conversation
 {
     public Guid Id { get; set; }
@@ -10,7 +14,7 @@ public class Conversation
     public ConversationStatus Status { get; set; }
     public List<ConversationMessage> Messages { get; set; }
 
-    public Conversation() 
+    public Conversation()
     {
         Messages = new List<ConversationMessage>();
     }
@@ -48,7 +52,7 @@ public class Conversation
     {
         if (string.IsNullOrWhiteSpace(newTitle))
             throw new ArgumentException("Title cannot be empty", nameof(newTitle));
-        
+
         Title = newTitle;
     }
 

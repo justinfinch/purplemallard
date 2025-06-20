@@ -68,12 +68,13 @@ public sealed class GetConversationEndpoint : Endpoint<GetConversationRequest, G
                 }
             };
         });
+        AllowAnonymous(); 
     }
 
     public override async Task HandleAsync(GetConversationRequest req, CancellationToken ct)
     {
         // Get user ID from claims (assuming JWT authentication)
-        var userId = User.FindFirst("UserId")?.Value ?? User.FindFirst("sub")?.Value ?? "anonymous";
+        var userId = User.GetUserId();
         
         // Retrieve conversation from Redis
         var cacheKey = CacheKeys.Conversation(req.ConversationId);

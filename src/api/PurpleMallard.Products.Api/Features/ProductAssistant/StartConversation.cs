@@ -54,13 +54,12 @@ public sealed class StartConversationEndpoint : Endpoint<StartConversationReques
                 UserId = "user123"
             };
         });
-        AllowAnonymous();
     }
 
     public override async Task HandleAsync(StartConversationRequest req, CancellationToken ct)
     {
         // Get user ID from claims (assuming JWT authentication)
-        var userId = User.FindFirst("UserId")?.Value ?? User.FindFirst("sub")?.Value ?? "anonymous";
+        var userId = User.GetUserId();
 
         // Create new conversation
         var conversation = Conversation.Create(userId, req.Title);

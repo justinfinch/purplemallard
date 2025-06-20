@@ -66,8 +66,8 @@ function AppContent() {
                   </Link>
                 </li>
                 <li>
-                  <Link to="/weather" className="hover:text-gray-300">
-                    Weather
+                  <Link to="/product-assistant/new" className="hover:text-gray-300">
+                    Product Assistant
                   </Link>
                 </li>
               </ul>

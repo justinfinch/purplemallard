@@ -52,7 +52,6 @@ public sealed class GenerateCompletionEndpoint : Endpoint<GenerateCompletionRequ
                 CreatedAt = DateTime.UtcNow
             };
         });
-        AllowAnonymous();
     }
 
     public override async Task HandleAsync(GenerateCompletionRequest req, CancellationToken ct)
@@ -69,7 +68,7 @@ public sealed class GenerateCompletionEndpoint : Endpoint<GenerateCompletionRequ
         }
 
         // Get user ID from claims (assuming JWT authentication)
-        var userId = User.FindFirst("UserId")?.Value ?? User.FindFirst("sub")?.Value ?? "anonymous";
+        var userId = User.GetUserId();
 
         // Retrieve conversation from Redis
         var cacheKey = CacheKeys.Conversation(req.ConversationId);
